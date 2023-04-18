@@ -35,7 +35,7 @@ class LRUCache(BaseCaching):
         """ Gets item from cache """
         item = self.cache_data.get(key, None)
         if item is not None:
-            self.mv_last_list(key)
+            self.last_list(key)
         return item
 
     def last_list(self, item):
