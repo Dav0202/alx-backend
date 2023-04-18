@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """Simple pagination
 """
 import csv
@@ -41,4 +42,3 @@ class Server:
         if start > len(data):
             return []
         return data[start:end]
-        
