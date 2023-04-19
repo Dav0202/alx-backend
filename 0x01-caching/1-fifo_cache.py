@@ -36,7 +36,7 @@ class FIFOCache(BaseCaching):
         return self.cache_data.get(key, None)
 
     def last_list(self, item):
-        """ Moves element to last idx of list """
+        """ Moves element to last list """
         length = len(self.queue)
         if self.queue[length - 1] != item:
             self.queue.remove(item)
@@ -44,5 +44,5 @@ class FIFOCache(BaseCaching):
 
     @staticmethod
     def first_list(array):
-        """ Get first element of list or None """
+        """ Get first element"""
         return array[0] if array else None
