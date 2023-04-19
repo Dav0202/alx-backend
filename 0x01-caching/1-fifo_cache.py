@@ -1,11 +1,11 @@
 #!/usr/bin/python3
-""" FIFO Caching """
+""" Caching """
 
 from base_caching import BaseCaching
 
 
 class FIFOCache(BaseCaching):
-    """ caching """
+    """ FIFO caching """
 
     def __init__(self):
         """ Constructor """
@@ -13,14 +13,14 @@ class FIFOCache(BaseCaching):
         self.queue = []
 
     def put(self, key, item):
-        """ Puts item """
+        """ Puts item in cache """
         if key is None or item is None:
             return
 
         if key not in self.queue:
             self.queue.append(key)
         else:
-            self.move_last(key)
+            self.last_list(key)
 
         self.cache_data[key] = item
 
@@ -32,11 +32,11 @@ class FIFOCache(BaseCaching):
                 print("DISCARD: {}".format(first))
 
     def get(self, key):
-        """ Gets cache """
+        """ Gets item from cache """
         return self.cache_data.get(key, None)
 
-    def move_last(self, item):
-        """ Moves element to last on list """
+    def last_list(self, item):
+        """ Moves element to last idx of list """
         length = len(self.queue)
         if self.queue[length - 1] != item:
             self.queue.remove(item)
@@ -44,5 +44,5 @@ class FIFOCache(BaseCaching):
 
     @staticmethod
     def first_list(array):
-        """ Get first element """
+        """ Get first element of list or None """
         return array[0] if array else None
