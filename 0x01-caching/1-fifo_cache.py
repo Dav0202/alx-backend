@@ -41,7 +41,7 @@ class FIFOCache(BaseCaching):
         if self.queue[length - 1] != item:
             self.queue.remove(item)
             self.queue.append(item)
-
+    @staticmethod
     def first_list(array):
         """ Get first element """
         return array[0] if array else None
