@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-""" Module for Babel i18n """
+""" Module for Babel i18n
+"""
 from flask_babel import Babel, _
 from flask import Flask, render_template, request, flash
 
@@ -16,15 +17,20 @@ class Config(object):
 
 app.config.from_object(Config)
 
+
 @app.route('/', methods=['GET'], strict_slashes=False)
 def hello_world() -> str:
-    """ Renders a Basic Template """
+    """ Renders a Basic Template
+    """
     return render_template("3-index.html")
+
 
 @babel.localeselector
 def get_locale() -> str:
-    """ Select a language translation """
+    """ Select a language translation
+    """
     return request.accept_languages.best_match(app.config['LANGUAGES'])
+
 
 if __name__ == "__main__":
     app.run()
