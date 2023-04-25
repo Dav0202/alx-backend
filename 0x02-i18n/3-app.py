@@ -20,7 +20,7 @@ app.config.from_object(Config)
 
 @app.route('/', methods=['GET'], strict_slashes=False)
 def hello_world() -> str:
-    """Renders a Basic Template """
+    """Renders a Basic Template"""
     return render_template("3-index.html")
 
 
