@@ -18,24 +18,19 @@ class Config(object):
 app.config.from_object(Config)
 
 
+@babel.localeselector
+def get_locale() -> str:
+    """Select a language translation request"""
+    locale = request.args.get("locale")
+    if locale and locale in app.config['LANGUAGES']:
+        return locale
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
+
+
 @app.route('/', methods=['GET'], strict_slashes=False)
 def hello_world() -> str:
     """Renders a Basic Template"""
     return render_template("4-index.html")
-
-
-@babel.localeselector
-def get_locale() -> str:
-    """Select a language translation request"""
-    lang = request.query_string.decode('utf-8').split('&')
-    lang_table = dict(map(
-        lambda x: (x if '=' in x else '{}='.format(x)).split('='),
-        lang,
-    ))
-    if 'locale' in lang_table:
-        if lang_table['locale'] in app.config["LANGUAGES"]:
-            return lang_table['locale']
-    return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 if __name__ == "__main__":
