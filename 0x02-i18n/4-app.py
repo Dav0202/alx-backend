@@ -27,9 +27,14 @@ def hello_world() -> str:
 @babel.localeselector
 def get_locale() -> str:
     """Select a language translation request"""
-    locale = request.args.get("locale")
-    if locale and locale in app.config['LANGUAGES']:
-        return locale
+    lang = request.query_string.decode('utf-8').split('&')
+    lang_table = dict(map(
+        lambda x: (x if '=' in x else '{}='.format(x)).split('='),
+        lang,
+    ))
+    if 'locale' in lang_table:
+        if lang_table['locale'] in app.config["LANGUAGES"]:
+            return lang_table['locale']
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
