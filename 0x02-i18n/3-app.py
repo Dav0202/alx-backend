@@ -20,13 +20,13 @@ app.config.from_object(Config)
 
 @app.route('/', methods=['GET'], strict_slashes=False)
 def hello_world() -> str:
-    """Renders a Basic Template"""
+    """ Renders a Basic Template """
     return render_template("3-index.html")
 
 
 @babel.localeselector
 def get_locale() -> str:
-    """Select a language translation"""
+    """ Select a language translation """
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
