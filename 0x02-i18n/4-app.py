@@ -28,9 +28,10 @@ def get_locale() -> str:
 
 
 @app.route('/', methods=['GET'], strict_slashes=False)
-def hello_world() -> str:
-    """Renders a Basic Template"""
-    return render_template("4-index.html")
+def get_index() -> str:
+    """Renders Basic template
+    """
+    return render_template('4-index.html')
 
 
 if __name__ == "__main__":
